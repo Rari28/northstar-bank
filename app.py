@@ -1,4 +1,3 @@
-```
 import os
 from decimal import Decimal, InvalidOperation
 from functools import wraps
@@ -304,4 +303,4 @@ with app.app_context():
 if __name__ == "__main__":
     app.run(debug=False)
 
-```
+
