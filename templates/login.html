@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="login-wrap">
+  <div class="login-card">
+    <div class="eyebrow">SECURE ONLINE BANKING</div>
+    <h1>Welcome back.</h1>
+    <p class="muted">Sign in to access your banking dashboard.</p>
+    <form method="post">
+      <label>Username</label><input name="username" required autocomplete="username" placeholder="Enter username">
+      <label>PIN</label><input name="pin" type="password" inputmode="numeric" required autocomplete="current-password" placeholder="Enter PIN">
+      <button class="primary full">Sign in</button>
+    </form>
+    <p class="hint">Demo admin login: <b>admin</b> / <b>1234</b></p>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Northstar Bank</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="{{ url_for('dashboard') if session.get('user_id') else url_for('login') }}">NORTHSTAR <span>BANK</span></a>
+  {% if session.get('user_id') %}
+    <div class="top-actions"><span>{{ session.get('full_name') }} · {{ session.get('role')|title }}</span><a class="logout" href="{{ url_for('logout') }}">Log out</a></div>
+  {% endif %}
+</header>
+<main class="container">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}<div class="alert {{ category }}">{{ message }}</div>{% endfor %}
+    {% endif %}
+  {% endwith %}
+  {% block content %}{% endblock %}
+</main>
+<footer>Demo banking application · For educational use only</footer>
+</body>
+</html>

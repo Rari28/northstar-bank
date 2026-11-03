@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="heading-row"><div><div class="eyebrow">ADMINISTRATOR</div><h1>Admin dashboard</h1><p class="muted">Manage customer accounts for this banking simulation.</p></div><div class="stat"><span>Customer accounts</span><strong>{{ customers|length }}</strong></div></div>
+<div class="grid">
+  <section class="panel">
+    <h2>Create customer account</h2>
+    <p class="muted">A new customer starts with a zero balance and the default PIN you assign.</p>
+    <form method="post" action="{{ url_for('create_customer') }}">
+      <label>Customer full name</label><input name="full_name" required placeholder="e.g. Alex Santos">
+      <label>Username</label><input name="username" required placeholder="Create a username">
+      <label>Default PIN (at least 4 digits)</label><input name="default_pin" type="password" inputmode="numeric" minlength="4" required>
+      <button class="primary">Create account</button>
+    </form>
+  </section>
+  <section class="panel">
+    <h2>Customer accounts</h2>
+    {% if customers %}
+    <div class="table-wrap"><table><thead><tr><th>Name</th><th>Username</th><th>Balance</th></tr></thead><tbody>
+    {% for c in customers %}<tr><td>{{ c.full_name }}</td><td>{{ c.username }}</td><td>₱{{ "%.2f"|format(c.balance) }}</td></tr>{% endfor %}
+    </tbody></table></div>
+    {% else %}<p class="muted">No customer accounts yet.</p>{% endif %}
+  </section>
+</div>
+{% endblock %}
